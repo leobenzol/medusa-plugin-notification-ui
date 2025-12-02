@@ -8,12 +8,12 @@ export const useNotificationTemplateTableEmptyState = (): DataTableEmptyStatePro
   return useMemo(() => {
     const content: DataTableEmptyStateProps = {
       empty: {
-        heading: t("list.empty.heading"),
-        description: t("list.empty.description"),
+        heading: t("notificationTemplates.list.empty.heading"),
+        description: t("notificationTemplates.list.empty.description"),
       },
       filtered: {
-        heading: t("list.filtered.heading"),
-        description: t("list.filtered.description"),
+        heading: t("notificationTemplates.list.filtered.heading"),
+        description: t("notificationTemplates.list.filtered.description"),
       },
     }
 

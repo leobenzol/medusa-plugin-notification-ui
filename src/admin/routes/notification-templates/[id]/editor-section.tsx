@@ -56,7 +56,7 @@ export const EditorSection = ({
             await updateTemplate({
                 template_code: editedCode,
             })
-            toast.success(t("toast.update"))
+            toast.success(t("notificationTemplates.toast.update"))
             setHasChanges(false)
         } catch (err) {
             toast.error(err instanceof Error ? err.message : "Failed to update template")
@@ -66,7 +66,7 @@ export const EditorSection = ({
     return (
         <Container className="divide-y p-0">
             <div className="flex items-center justify-between px-6 h-[52px] border-b border-ui-border-base bg-ui-bg-base">
-                <span className="text-sm font-medium text-ui-fg-base">{t("template_editor.title")}</span>
+                <span className="text-sm font-medium text-ui-fg-base">{t("notificationTemplates.template_editor.title")}</span>
                 <Button
                     size="small"
                     variant="primary"

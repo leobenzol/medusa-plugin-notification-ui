@@ -62,7 +62,7 @@ export const CreateNotificationTemplateForm = () => {
     },
       {
         onSuccess: ({ notification_template }) => {
-          toast.success(t("toast.create"))
+          toast.success(t("notificationTemplates.toast.create"))
           handleSuccess(`../${notification_template.id}`)
         },
         onError: (error) => toast.error(error.message),
@@ -148,14 +148,14 @@ export const CreateNotificationTemplateForm = () => {
                   value={Tab.DETAILS}
                   className="max-w-[200px] truncate"
                 >
-                  {t("create.tabs.details")}
+                  {t("notificationTemplates.create.tabs.details")}
                 </ProgressTabs.Trigger>
                 <ProgressTabs.Trigger
                   status={tabState[Tab.TEMPLATE]}
                   value={Tab.TEMPLATE}
                   className="max-w-[200px] truncate"
                 >
-                  {t("create.tabs.template")}
+                  {t("notificationTemplates.create.tabs.template")}
                 </ProgressTabs.Trigger>
               </ProgressTabs.List>
             </div>

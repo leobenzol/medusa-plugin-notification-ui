@@ -149,14 +149,14 @@ export const PreviewSection = ({
             <div className="relative bg-ui-bg-subtle h-[calc(100vh-200px)] overflow-auto">
                 {isLoading && (
                     <div className="flex items-center justify-center p-12">
-                        <div className="text-ui-fg-subtle">{t("template_editor.loading_preview")}</div>
+                        <div className="text-ui-fg-subtle">{t("notificationTemplates.template_editor.loading_preview")}</div>
                     </div>
                 )}
 
                 {error && !isLoading && (
                     <div className="flex items-center justify-center p-12">
                         <div className="text-ui-fg-error">
-                            <p className="font-medium mb-2">{t("template_editor.error_rendering_template")}</p>
+                            <p className="font-medium mb-2">{t("notificationTemplates.template_editor.error_rendering_template")}</p>
                             <p className="text-sm">{error.message}</p>
                         </div>
                     </div>
@@ -236,9 +236,9 @@ const PreviewTopbar = ({
     const { t } = useTranslation("notification-ui")
 
     const tabs: Array<{ value: ViewMode; label: string }> = [
-        { value: "preview", label: t("template_editor.tabs.preview") },
-        { value: "html", label: t("template_editor.tabs.html") },
-        { value: "text", label: t("template_editor.tabs.text") },
+        { value: "preview", label: t("notificationTemplates.template_editor.tabs.preview") },
+        { value: "html", label: t("notificationTemplates.template_editor.tabs.html") },
+        { value: "text", label: t("notificationTemplates.template_editor.tabs.text") },
     ]
 
     const locales = [
@@ -294,7 +294,7 @@ const PreviewTopbar = ({
                     </Select.Content>
                 </Select>
                 {hasLayout && (
-                    <Tooltip content={t("template_editor.render_with_layout")}>
+                    <Tooltip content={t("notificationTemplates.template_editor.render_with_layout")}>
                         <IconButton
                             variant={renderWithLayout ? "primary" : "transparent"}
                             onClick={() => setRenderWithLayout(!renderWithLayout)}

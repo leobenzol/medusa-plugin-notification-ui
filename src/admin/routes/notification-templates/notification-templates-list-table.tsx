@@ -57,8 +57,8 @@ export const NotificationTemplatesListTable = () => {
           emptyState={emptyState}
           heading={
             <Tabs.List>
-              <Tabs.Trigger value="template">{t("domain.templates")}</Tabs.Trigger>
-              <Tabs.Trigger value="layout">{t("domain.layouts")}</Tabs.Trigger>
+              <Tabs.Trigger value="template">{t("notificationTemplates.domain.templates")}</Tabs.Trigger>
+              <Tabs.Trigger value="layout">{t("notificationTemplates.domain.layouts")}</Tabs.Trigger>
             </Tabs.List>
           }
           action={{
@@ -87,7 +87,7 @@ const useColumns = (isLayout: boolean) => {
     async (notificationTemplate: AdminNotificationTemplate) => {
       const confirm = await prompt({
         title: t("general.areYouSure"),
-        description: t("deleteNotificationTemplateWarning", {
+        description: t("notificationTemplates.deleteWarning", {
           name: notificationTemplate.name,
         }),
         confirmText: t("actions.delete"),
@@ -100,7 +100,7 @@ const useColumns = (isLayout: boolean) => {
 
       await mutateAsync(notificationTemplate.id, {
         onSuccess: () => {
-          toast.success(t("toast.delete"))
+          toast.success(t("notificationTemplates.toast.delete"))
         },
         onError: (e) => {
           toast.error(e.message)

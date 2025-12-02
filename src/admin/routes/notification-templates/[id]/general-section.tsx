@@ -29,7 +29,7 @@ export const GeneralSection = ({
     const handleDelete = async () => {
         const confirm = await prompt({
             title: t("general.areYouSure"),
-            description: t("deleteNotificationTemplateWarning", {
+            description: t("notificationTemplates.deleteWarning", {
                 name: notificationTemplate.name,
             }),
             confirmText: t("actions.delete"),
@@ -42,7 +42,7 @@ export const GeneralSection = ({
 
         await mutateAsync(undefined, {
             onSuccess: () => {
-                toast.success(t("toast.delete"))
+                toast.success(t("notificationTemplates.toast.delete"))
                 navigate("/notification-templates", { replace: true })
             },
             onError: (e) => {

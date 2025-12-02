@@ -19,10 +19,10 @@ export const CreateDetailsForm = ({ form }: { form: FormReturn }) => {
       <div className="flex w-full max-w-[720px] flex-col gap-y-8 px-2 py-16">
         <div>
           <Heading className="capitalize">
-            {t("create.title")}
+            {t("notificationTemplates.create.title")}
           </Heading>
           <Text size="small" className="text-ui-fg-subtle">
-            {t("create.hint")}
+            {t("notificationTemplates.create.hint")}
           </Text>
         </div>
         <div className="flex flex-col gap-y-4">

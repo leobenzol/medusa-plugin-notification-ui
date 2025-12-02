@@ -49,7 +49,7 @@ export const EditNotificationTemplateForm = ({
     await mutateAsync({ ...values, type: is_layout ? "layout" : "template", layout_id: layout_id || null },
       {
         onSuccess: () => {
-          toast.success(t("toast.update"))
+          toast.success(t("notificationTemplates.toast.update"))
           handleSuccess()
         },
         onError: (error) => {
@@ -133,8 +133,8 @@ export const EditNotificationTemplateForm = ({
               if (checked)
                 form.setValue("layout_id", undefined)
             }}
-            label={t("edit.isLayoutTemplate")}
-            description={t("edit.isLayoutTemplateDescription")}
+            label={t("notificationTemplates.edit.isLayoutTemplate")}
+            description={t("notificationTemplates.edit.isLayoutTemplateDescription")}
           />
           {!isLayout && <Form.Field
             control={form.control}

@@ -4,249 +4,13 @@
     "description": "Schema for notification templates translation files",
     "type": "object",
     "required": [
-        "title",
-        "domain",
-        "list",
-        "create",
-        "edit",
-        "createNotificationTemplate",
-        "createNotificationTemplateHint",
-        "editNotificationTemplate",
-        "deleteNotificationTemplateWarning",
-        "no_layout",
-        "template_editor",
         "fields",
-        "defaultTemplates",
-        "toast"
+        "notificationTemplates"
     ],
     "properties": {
         "$schema": {
             "type": "string",
             "description": "JSON Schema reference for validation and IDE support"
-        },
-        "title": {
-            "type": "string",
-            "description": "Main page title for notification templates"
-        },
-        "domain": {
-            "type": "object",
-            "description": "Domain-specific terminology",
-            "required": [
-                "templates",
-                "layouts"
-            ],
-            "properties": {
-                "templates": {
-                    "type": "string",
-                    "description": "Label for templates tab/section"
-                },
-                "layouts": {
-                    "type": "string",
-                    "description": "Label for layouts tab/section"
-                }
-            },
-            "additionalProperties": false
-        },
-        "list": {
-            "type": "object",
-            "description": "List view related translations",
-            "required": [
-                "empty",
-                "filtered"
-            ],
-            "properties": {
-                "empty": {
-                    "type": "object",
-                    "description": "Empty state when no templates exist",
-                    "required": [
-                        "heading",
-                        "description"
-                    ],
-                    "properties": {
-                        "heading": {
-                            "type": "string",
-                            "description": "Heading text for empty state"
-                        },
-                        "description": {
-                            "type": "string",
-                            "description": "Description text for empty state"
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "filtered": {
-                    "type": "object",
-                    "description": "Filtered state when no results match filters",
-                    "required": [
-                        "heading",
-                        "description"
-                    ],
-                    "properties": {
-                        "heading": {
-                            "type": "string",
-                            "description": "Heading text for filtered empty state"
-                        },
-                        "description": {
-                            "type": "string",
-                            "description": "Description text for filtered empty state"
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "additionalProperties": false
-        },
-        "create": {
-            "type": "object",
-            "description": "Create flow related translations",
-            "required": [
-                "title",
-                "hint",
-                "tabs",
-                "isLayoutTemplate",
-                "isLayoutTemplateDescription"
-            ],
-            "properties": {
-                "title": {
-                    "type": "string",
-                    "description": "Title for create notification template form"
-                },
-                "hint": {
-                    "type": "string",
-                    "description": "Hint text for create notification template form"
-                },
-                "tabs": {
-                    "type": "object",
-                    "description": "Tab labels in create modal",
-                    "required": [
-                        "details",
-                        "template"
-                    ],
-                    "properties": {
-                        "details": {
-                            "type": "string",
-                            "description": "Details tab label"
-                        },
-                        "template": {
-                            "type": "string",
-                            "description": "Template tab label"
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "isLayoutTemplate": {
-                    "type": "string",
-                    "description": "Label for layout template switch in create flow"
-                },
-                "isLayoutTemplateDescription": {
-                    "type": "string",
-                    "description": "Description for layout template switch in create flow"
-                }
-            },
-            "additionalProperties": false
-        },
-        "edit": {
-            "type": "object",
-            "description": "Edit flow related translations",
-            "required": [
-                "title",
-                "isLayoutTemplate",
-                "isLayoutTemplateDescription"
-            ],
-            "properties": {
-                "title": {
-                    "type": "string",
-                    "description": "Title for edit notification template form"
-                },
-                "isLayoutTemplate": {
-                    "type": "string",
-                    "description": "Label for layout template switch"
-                },
-                "isLayoutTemplateDescription": {
-                    "type": "string",
-                    "description": "Description for layout template switch"
-                }
-            },
-            "additionalProperties": false
-        },
-        "createNotificationTemplate": {
-            "type": "string",
-            "description": "Title for create notification template form"
-        },
-        "createNotificationTemplateHint": {
-            "type": "string",
-            "description": "Hint text for create notification template form"
-        },
-        "editNotificationTemplate": {
-            "type": "string",
-            "description": "Title for edit notification template form"
-        },
-        "deleteNotificationTemplateWarning": {
-            "type": "string",
-            "description": "Warning message when deleting a template. Supports {{name}} interpolation for template name"
-        },
-        "no_layout": {
-            "type": "string",
-            "description": "Label for no layout option"
-        },
-        "template_editor": {
-            "type": "object",
-            "description": "Template editor section translations",
-            "required": [
-                "title",
-                "tabs",
-                "loading_preview",
-                "updating_preview",
-                "error_rendering_template",
-                "render_with_layout"
-            ],
-            "properties": {
-                "title": {
-                    "type": "string",
-                    "description": "Title for template editor section"
-                },
-                "tabs": {
-                    "type": "object",
-                    "description": "Tab labels in preview section",
-                    "required": [
-                        "preview",
-                        "html",
-                        "text"
-                    ],
-                    "properties": {
-                        "preview": {
-                            "type": "string",
-                            "description": "Preview tab label"
-                        },
-                        "html": {
-                            "type": "string",
-                            "description": "HTML tab label"
-                        },
-                        "text": {
-                            "type": "string",
-                            "description": "Text tab label"
-                        }
-                    },
-                    "additionalProperties": false
-                },
-                "loading_preview": {
-                    "type": "string",
-                    "description": "Loading message for preview"
-                },
-                "updating_preview": {
-                    "type": "string",
-                    "description": "Updating message for preview"
-                },
-                "error_rendering_template": {
-                    "type": "string",
-                    "description": "Error message when template rendering fails"
-                },
-                "render_with_layout": {
-                    "type": "string",
-                    "description": "Tooltip for render with layout button"
-                }
-            },
-            "additionalProperties": false
         },
         "fields": {
             "type": "object",
@@ -272,51 +36,282 @@
             },
             "additionalProperties": false
         },
-        "defaultTemplates": {
+        "notificationTemplates": {
             "type": "object",
-            "description": "Default template options with titles and descriptions",
-            "patternProperties": {
-                "^[a-z]+$": {
+            "description": "Translations related to notification templates",
+            "required": [
+                "title",
+                "domain",
+                "list",
+                "create",
+                "edit",
+                "deleteWarning",
+                "no_layout",
+                "template_editor",
+                "defaultTemplates",
+                "toast"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Main page title for notification templates"
+                },
+                "domain": {
                     "type": "object",
+                    "description": "Domain-specific terminology",
+                    "required": [
+                        "templates",
+                        "layouts"
+                    ],
+                    "properties": {
+                        "templates": {
+                            "type": "string",
+                            "description": "Label for templates tab/section"
+                        },
+                        "layouts": {
+                            "type": "string",
+                            "description": "Label for layouts tab/section"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "list": {
+                    "type": "object",
+                    "description": "List view related translations",
+                    "required": [
+                        "empty",
+                        "filtered"
+                    ],
+                    "properties": {
+                        "empty": {
+                            "type": "object",
+                            "description": "Empty state when no templates exist",
+                            "required": [
+                                "heading",
+                                "description"
+                            ],
+                            "properties": {
+                                "heading": {
+                                    "type": "string",
+                                    "description": "Heading text for empty state"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description text for empty state"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "filtered": {
+                            "type": "object",
+                            "description": "Filtered state when no results match filters",
+                            "required": [
+                                "heading",
+                                "description"
+                            ],
+                            "properties": {
+                                "heading": {
+                                    "type": "string",
+                                    "description": "Heading text for filtered empty state"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description text for filtered empty state"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "create": {
+                    "type": "object",
+                    "description": "Create flow related translations",
                     "required": [
                         "title",
-                        "description"
+                        "hint",
+                        "tabs",
+                        "isLayoutTemplate",
+                        "isLayoutTemplateDescription"
                     ],
                     "properties": {
                         "title": {
                             "type": "string",
-                            "description": "Template option title"
+                            "description": "Title for create notification template form"
                         },
-                        "description": {
+                        "hint": {
                             "type": "string",
-                            "description": "Template option description"
+                            "description": "Hint text for create notification template form"
+                        },
+                        "tabs": {
+                            "type": "object",
+                            "description": "Tab labels in create modal",
+                            "required": [
+                                "details",
+                                "template"
+                            ],
+                            "properties": {
+                                "details": {
+                                    "type": "string",
+                                    "description": "Details tab label"
+                                },
+                                "template": {
+                                    "type": "string",
+                                    "description": "Template tab label"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "isLayoutTemplate": {
+                            "type": "string",
+                            "description": "Label for layout template switch in create flow"
+                        },
+                        "isLayoutTemplateDescription": {
+                            "type": "string",
+                            "description": "Description for layout template switch in create flow"
                         }
                     },
                     "additionalProperties": false
-                }
-            },
-            "additionalProperties": false
-        },
-        "toast": {
-            "type": "object",
-            "description": "Toast notification messages",
-            "required": [
-                "create",
-                "update",
-                "delete"
-            ],
-            "properties": {
-                "create": {
-                    "type": "string",
-                    "description": "Success message after creating a template"
                 },
-                "update": {
-                    "type": "string",
-                    "description": "Success message after updating a template"
+                "edit": {
+                    "type": "object",
+                    "description": "Edit flow related translations",
+                    "required": [
+                        "title",
+                        "isLayoutTemplate",
+                        "isLayoutTemplateDescription"
+                    ],
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "Title for edit notification template form"
+                        },
+                        "isLayoutTemplate": {
+                            "type": "string",
+                            "description": "Label for layout template switch"
+                        },
+                        "isLayoutTemplateDescription": {
+                            "type": "string",
+                            "description": "Description for layout template switch"
+                        }
+                    },
+                    "additionalProperties": false
                 },
-                "delete": {
+                "deleteWarning": {
                     "type": "string",
-                    "description": "Success message after deleting a template"
+                    "description": "Warning message when deleting a template. Supports {{name}} interpolation for template name"
+                },
+                "no_layout": {
+                    "type": "string",
+                    "description": "Label for no layout option"
+                },
+                "template_editor": {
+                    "type": "object",
+                    "description": "Template editor section translations",
+                    "required": [
+                        "title",
+                        "tabs",
+                        "loading_preview",
+                        "updating_preview",
+                        "error_rendering_template",
+                        "render_with_layout"
+                    ],
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "Title for template editor section"
+                        },
+                        "tabs": {
+                            "type": "object",
+                            "description": "Tab labels in preview section",
+                            "required": [
+                                "preview",
+                                "html",
+                                "text"
+                            ],
+                            "properties": {
+                                "preview": {
+                                    "type": "string",
+                                    "description": "Preview tab label"
+                                },
+                                "html": {
+                                    "type": "string",
+                                    "description": "HTML tab label"
+                                },
+                                "text": {
+                                    "type": "string",
+                                    "description": "Text tab label"
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "loading_preview": {
+                            "type": "string",
+                            "description": "Loading message for preview"
+                        },
+                        "updating_preview": {
+                            "type": "string",
+                            "description": "Updating message for preview"
+                        },
+                        "error_rendering_template": {
+                            "type": "string",
+                            "description": "Error message when template rendering fails"
+                        },
+                        "render_with_layout": {
+                            "type": "string",
+                            "description": "Tooltip for render with layout button"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "defaultTemplates": {
+                    "type": "object",
+                    "description": "Default template options with titles and descriptions",
+                    "patternProperties": {
+                        "^[a-z]+$": {
+                            "type": "object",
+                            "required": [
+                                "title",
+                                "description"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Template option title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Template option description"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "toast": {
+                    "type": "object",
+                    "description": "Toast notification messages",
+                    "required": [
+                        "create",
+                        "update",
+                        "delete"
+                    ],
+                    "properties": {
+                        "create": {
+                            "type": "string",
+                            "description": "Success message after creating a template"
+                        },
+                        "update": {
+                            "type": "string",
+                            "description": "Success message after updating a template"
+                        },
+                        "delete": {
+                            "type": "string",
+                            "description": "Success message after deleting a template"
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "additionalProperties": false

@@ -24,7 +24,7 @@ const NotificationTemplateEdit = () => {
     <RouteDrawer>
       <RouteDrawer.Header>
         <Heading className="capitalize">
-          {t("edit.title")}
+          {t("notificationTemplates.edit.title")}
         </Heading>
       </RouteDrawer.Header>
       {!isLoading && !!notification_template && (

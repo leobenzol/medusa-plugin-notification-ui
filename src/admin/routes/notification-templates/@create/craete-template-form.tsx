@@ -19,7 +19,7 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
 
   const layouts = useComboboxData({
     queryKey: ["notification_templates"],
-    queryFn: (params) =>  sdk.client.fetch<AdminNotificationTemplateListResponse>("/admin/notification-templates", { query: { ...params, type: "layout" } }),
+    queryFn: (params) => sdk.client.fetch<AdminNotificationTemplateListResponse>("/admin/notification-templates", { query: { ...params, type: "layout" } }),
     getOptions: (data) =>
       data.notification_templates.map((template) => ({
         label: template.name,
@@ -37,10 +37,10 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
       <div className="flex w-full max-w-[720px] flex-col gap-y-8 px-2 py-16">
         <div>
           <Heading className="capitalize">
-            {t("create.title")}
+            {t("notificationTemplates.create.title")}
           </Heading>
           <Text size="small" className="text-ui-fg-subtle">
-            {t("create.hint")}
+            {t("notificationTemplates.create.hint")}
           </Text>
         </div>
         <div className="flex flex-col gap-y-4">
@@ -51,8 +51,8 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
               if (checked)
                 form.setValue("layout_id", undefined)
             }}
-            label={t("create.isLayoutTemplate")}
-            description={t("create.isLayoutTemplateDescription")}
+            label={t("notificationTemplates.create.isLayoutTemplate")}
+            description={t("notificationTemplates.create.isLayoutTemplateDescription")}
           />
           {!isLayout && <Form.Field
             control={form.control}
@@ -69,7 +69,7 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
                       searchValue={layouts.searchValue}
                       onSearchValueChange={layouts.onSearchValueChange}
                       fetchNextPage={layouts.fetchNextPage}
-                      placeholder={t("no_layout")}
+                      placeholder={t("notificationTemplates.no_layout")}
                       allowClear
                     />
                   </Form.Control>
@@ -96,8 +96,8 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
                           <RadioGroup.ChoiceBox
                             key={key}
                             value={template.template_code}
-                            label={t(`defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.title`)}
-                            description={t(`defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.description`)}
+                            label={t(`notificationTemplates.defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.title`)}
+                            description={t(`notificationTemplates.defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.description`)}
                             className="overflow-hidden"
                           />
                         ))

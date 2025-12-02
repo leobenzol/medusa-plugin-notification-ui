@@ -15,7 +15,7 @@ const NotificationTemplatesList = () => {
 }
 
 export const config = defineRouteConfig({
-  label: "title",
+  label: "notificationTemplates.title",
   translationNs: "notification-ui",
   icon: BellAlert,
 })

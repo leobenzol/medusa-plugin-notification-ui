@@ -40,7 +40,7 @@
     "@medusajs/test-utils": "2.11.3",
     "@medusajs/ui": "4.0.26",
     "@medusajs/icons": "2.11.3",
-    "@swc/core": "1.5.7",
+    "@swc/core": "1.7.28",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",
@@ -62,7 +62,8 @@
     "@medusajs/icons": "2.11.2"
   },
   "dependencies": {
-    "react-email": "^5.0.5"
+    "@react-email/components": "^1.0.1",
+    "@react-email/render": "^2.0.0"
   },
   "engines": {
     "node": ">=20"

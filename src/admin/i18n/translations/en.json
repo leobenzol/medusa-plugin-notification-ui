@@ -1,0 +1,78 @@
+{
+    "$schema": "./$schema.json",
+    "title": "Notification Templates",
+    "domain": {
+        "templates": "Templates",
+        "layouts": "Layouts"
+    },
+    "list": {
+        "empty": {
+            "heading": "No notification templates yet",
+            "description": "Create your first notification template to get started."
+        },
+        "filtered": {
+            "heading": "No notification templates found",
+            "description": "Try adjusting your filters to find what you're looking for."
+        }
+    },
+    "create": {
+        "title": "Create Notification Template",
+        "hint": "Create a new template for your notifications",
+        "tabs": {
+            "details": "Details",
+            "template": "Template"
+        },
+        "isLayoutTemplate": "Layout Template",
+        "isLayoutTemplateDescription": "Mark this template as a layout that can be used to wrap other templates"
+    },
+    "edit": {
+        "title": "Edit Notification Template",
+        "isLayoutTemplate": "Layout Template",
+        "isLayoutTemplateDescription": "Mark this template as a layout that can be used to wrap other templates"
+    },
+    "createNotificationTemplate": "Create Notification Template",
+    "createNotificationTemplateHint": "Create a new template for your notifications",
+    "editNotificationTemplate": "Edit Notification Template",
+    "deleteNotificationTemplateWarning": "Are you sure you want to delete the notification template \"{{name}}\"? This action cannot be undone.",
+    "no_layout": "No layout",
+    "template_editor": {
+        "title": "Template Editor",
+        "tabs": {
+            "preview": "Preview",
+            "html": "HTML",
+            "text": "Text"
+        },
+        "loading_preview": "Loading preview...",
+        "updating_preview": "Updating preview...",
+        "error_rendering_template": "Error rendering template",
+        "render_with_layout": "Render with layout"
+    },
+    "fields": {
+        "template": "Template",
+        "layout": "Layout",
+        "template_code": "Template Code"
+    },
+    "defaultTemplates": {
+        "blank": {
+            "title": "Blank Template",
+            "description": "Start with an empty template"
+        },
+        "basic": {
+            "title": "Basic Template",
+            "description": "A simple template with basic structure"
+        },
+        "promotional": {
+            "title": "Promotional Template",
+            "description": "Perfect for marketing and promotional content"
+        },
+        "transactional": {
+            "title": "Transactional Template",
+            "description": "Ideal for order confirmations and receipts"
+        }
+    },
+    "toast": {
+        "create": "Notification template created successfully",
+        "update": "Notification template updated successfully",
+        "delete": "Notification template deleted successfully"
+    }
+}

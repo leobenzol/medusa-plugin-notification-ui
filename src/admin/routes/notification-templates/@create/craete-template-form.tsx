@@ -12,13 +12,14 @@ import { AdminNotificationTemplateListResponse } from "../../../../types/http/no
 import { Combobox } from "../../../medusa/components/inputs/combobox"
 import { SwitchBox } from "../../../medusa/components/common/switch-box"
 import { useWatch } from "react-hook-form"
-import { DEFAULT_TEMPLATES } from "../../../data"
+import { DEFAULT_TEMPLATES, DEFAULT_LAYOUTS } from "../../../data"
+import { notificationTemplatesQueryKeys } from "../../../hooks/use-notification-templates"
 
 export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
   const { t } = useTranslation("notification-ui")
 
   const layouts = useComboboxData({
-    queryKey: ["notification_templates"],
+    queryKey: notificationTemplatesQueryKeys.list({ type: "layout" }),
     queryFn: (params) => sdk.client.fetch<AdminNotificationTemplateListResponse>("/admin/notification-templates", { query: { ...params, type: "layout" } }),
     getOptions: (data) =>
       data.notification_templates.map((template) => ({
@@ -82,6 +83,7 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
             control={form.control}
             name="template_code"
             render={({ field }) => {
+              const templates = isLayout ? DEFAULT_LAYOUTS : DEFAULT_TEMPLATES
               return (
                 <Form.Item>
                   <Form.Label>{t("fields.template_code")}</Form.Label>
@@ -92,12 +94,12 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
                       onValueChange={field.onChange}
                     >
                       {
-                        Object.entries(DEFAULT_TEMPLATES).map(([key, template]) => (
+                        Object.entries(templates).map(([key, template]) => (
                           <RadioGroup.ChoiceBox
                             key={key}
                             value={template.template_code}
-                            label={t(`notificationTemplates.defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.title`)}
-                            description={t(`notificationTemplates.defaultTemplates.${key as keyof typeof DEFAULT_TEMPLATES}.description`)}
+                            label={t(`notificationTemplates.${isLayout ? 'defaultLayouts' : 'defaultTemplates'}.${key as keyof typeof templates}.title`)}
+                            description={t(`notificationTemplates.${isLayout ? 'defaultLayouts' : 'defaultTemplates'}.${key as keyof typeof templates}.description`)}
                             className="overflow-hidden"
                           />
                         ))

@@ -68,6 +68,20 @@
                 "description": "Ideale per conferme d'ordine e ricevute"
             }
         },
+        "defaultLayouts": {
+            "blank": {
+                "title": "Layout Vuoto",
+                "description": "Layout vuoto con struttura minima"
+            },
+            "basic": {
+                "title": "Layout Base",
+                "description": "Layout semplice con intestazione e piè di pagina"
+            },
+            "branded": {
+                "title": "Layout con Branding",
+                "description": "Layout professionale con elementi di branding"
+            }
+        },
         "toast": {
             "create": "Template di notifica creato con successo",
             "update": "Template di notifica aggiornato con successo",

@@ -68,6 +68,20 @@
                 "description": "Ideal for order confirmations and receipts"
             }
         },
+        "defaultLayouts": {
+            "blank": {
+                "title": "Blank Layout",
+                "description": "Empty layout with minimal structure"
+            },
+            "basic": {
+                "title": "Basic Layout",
+                "description": "Simple layout with header and footer"
+            },
+            "branded": {
+                "title": "Branded Layout",
+                "description": "Professional layout with branding elements"
+            }
+        },
         "toast": {
             "create": "Notification template created successfully",
             "update": "Notification template updated successfully",

@@ -9,6 +9,7 @@ import { Form } from "../../../medusa/components/common/form"
 import { FormReturn } from "./create-notification-template-form"
 import { HandleInput } from "../../../medusa/components/inputs/handle-input"
 import { useWatch } from "react-hook-form"
+import { kebabCase } from "../../../medusa/components/utilities/kebab-case"
 
 export const CreateDetailsForm = ({ form }: { form: FormReturn }) => {
   const { t } = useTranslation("notification-ui")
@@ -54,7 +55,7 @@ export const CreateDetailsForm = ({ form }: { form: FormReturn }) => {
                       {t("fields.handle")}
                     </Form.Label>
                     <Form.Control>
-                      <HandleInput {...field} placeholder={name} />
+                      <HandleInput {...field} placeholder={name ? kebabCase(name) : name} />
                     </Form.Control>
                   </Form.Item>
                 )

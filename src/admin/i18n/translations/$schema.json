@@ -290,6 +290,31 @@
                     },
                     "additionalProperties": false
                 },
+                "defaultLayouts": {
+                    "type": "object",
+                    "description": "Default layout options with titles and descriptions",
+                    "patternProperties": {
+                        "^[a-z]+$": {
+                            "type": "object",
+                            "required": [
+                                "title",
+                                "description"
+                            ],
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "Layout option title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Layout option description"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
                 "toast": {
                     "type": "object",
                     "description": "Toast notification messages",

@@ -8,7 +8,7 @@ import { Form } from "../../../../medusa/components/common/form"
 import { RouteDrawer, useRouteModal } from "../../../../medusa/components/modals"
 import { KeyboundForm } from "../../../../medusa/components/utilities/keybound-form"
 import { AdminNotificationTemplateListResponse, AdminNotificationTemplate } from "../../../../../types/http/notification-template"
-import { useUpdateNotificationTemplate } from "../../../../hooks/use-notification-templates"
+import { notificationTemplatesQueryKeys, useUpdateNotificationTemplate } from "../../../../hooks/use-notification-templates"
 import { SwitchBox } from "../../../../medusa/components/common/switch-box"
 import { Combobox } from "../../../../medusa/components/inputs/combobox"
 import { useComboboxData } from "../../../../medusa/hooks/use-combobox-data"
@@ -65,7 +65,7 @@ export const EditNotificationTemplateForm = ({
   })
 
   const layouts = useComboboxData({
-    queryKey: ["notification_templates"],
+    queryKey: notificationTemplatesQueryKeys.list({ type: "layout" }),
     queryFn: (params) => sdk.client.fetch<AdminNotificationTemplateListResponse>("/admin/notification-templates", { query: { ...params, type: "layout" } }),
     getOptions: (data) =>
       data.notification_templates.map((template) => ({

@@ -16,6 +16,16 @@ export interface AdminCreateEventNotifier {
      * The notification channel (e.g., email, sms).
      */
     channel: string
+
+    /**
+     * The recipient type (static or entity_key).
+     */
+    recipient_type: "static" | "entity_key"
+
+    /**
+     * The recipient value (email address or entity key path).
+     */
+    recipient: string
 }
 
 /**
@@ -36,4 +46,14 @@ export interface AdminUpdateEventNotifier {
      * The notification channel (e.g., email, sms).
      */
     channel?: string
+
+    /**
+     * The recipient type (static or entity_key).
+     */
+    recipient_type?: "static" | "entity_key"
+
+    /**
+     * The recipient value (email address or entity key path).
+     */
+    recipient?: string
 }

@@ -57,11 +57,11 @@
             },
             "basic": {
                 "title": "Template Base",
-                "description": "Un template semplice con struttura base"
+                "description": "Un template semplice con struttura di base"
             },
             "promotional": {
                 "title": "Template Promozionale",
-                "description": "Perfetto per contenuti marketing e promozionali"
+                "description": "Perfetto per contenuti di marketing e promozionali"
             },
             "transactional": {
                 "title": "Template Transazionale",
@@ -72,6 +72,61 @@
             "create": "Template di notifica creato con successo",
             "update": "Template di notifica aggiornato con successo",
             "delete": "Template di notifica eliminato con successo"
+        }
+    },
+    "eventNotifiers": {
+        "title": "Notificatori di Evento",
+        "deleteWarning": "Sei sicuro di voler eliminare questo notificatore di evento? Questa azione non può essere annullata.",
+        "table": {
+            "eventName": "Nome Evento",
+            "template": "Template",
+            "channel": "Canale",
+            "recipientType": "Tipo Destinatario",
+            "recipient": "Destinatario",
+            "actions": "Azioni",
+            "loading": "Caricamento..."
+        },
+        "fields": {
+            "eventName": "Nome Evento",
+            "template": "Template",
+            "channel": "Canale",
+            "recipientType": "Tipo Destinatario",
+            "recipient": "Destinatario"
+        },
+        "form": {
+            "eventNamePlaceholder": "order.placed",
+            "selectTemplate": "Seleziona template",
+            "selectChannel": "Seleziona canale",
+            "selectRecipientType": "Seleziona tipo destinatario",
+            "recipientPlaceholder": "utente@esempio.com o customer.email",
+            "recipientHint": "Per tipo statico, inserisci un indirizzo email. Per tipo entity_key, inserisci il percorso al campo destinatario (es. customer.email)."
+        },
+        "recipientTypes": {
+            "static": "Email Statica",
+            "entityKey": "Chiave Entità"
+        },
+        "create": {
+            "title": "Crea Notificatore di Evento",
+            "subtitle": "Configura un nuovo notificatore di evento per inviare notifiche quando si verificano eventi specifici."
+        },
+        "edit": {
+            "title": "Modifica Notificatore di Evento"
+        },
+        "detail": {
+            "subtitle": "Visualizza e gestisci i dettagli del notificatore di evento"
+        },
+        "emptyState": {
+            "heading": "Nessun notificatore di evento",
+            "description": "Crea un notificatore di evento per iniziare a inviare notifiche quando si verificano eventi."
+        },
+        "toast": {
+            "created": "Notificatore di evento creato",
+            "updated": "Notificatore di evento aggiornato",
+            "deleted": "Notificatore di evento eliminato",
+            "createError": "Impossibile creare il notificatore di evento",
+            "updateError": "Impossibile aggiornare il notificatore di evento",
+            "deleteError": "Impossibile eliminare il notificatore di evento",
+            "allFieldsRequired": "Tutti i campi sono obbligatori"
         }
     }
 }

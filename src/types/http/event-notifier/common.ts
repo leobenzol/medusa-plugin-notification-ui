@@ -27,6 +27,16 @@ export interface BaseEventNotifier {
     channel: string
 
     /**
+     * The recipient type (static or entity_key).
+     */
+    recipient_type: "static" | "entity_key"
+
+    /**
+     * The recipient value (email address or entity key path).
+     */
+    recipient: string
+
+    /**
      * The date the event notifier was created.
      */
     created_at: string

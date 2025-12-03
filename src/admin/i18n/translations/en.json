@@ -73,5 +73,60 @@
             "update": "Notification template updated successfully",
             "delete": "Notification template deleted successfully"
         }
+    },
+    "eventNotifiers": {
+        "title": "Event Notifiers",
+        "deleteWarning": "Are you sure you want to delete this event notifier? This action cannot be undone.",
+        "table": {
+            "eventName": "Event Name",
+            "template": "Template",
+            "channel": "Channel",
+            "recipientType": "Recipient Type",
+            "recipient": "Recipient",
+            "actions": "Actions",
+            "loading": "Loading..."
+        },
+        "fields": {
+            "eventName": "Event Name",
+            "template": "Template",
+            "channel": "Channel",
+            "recipientType": "Recipient Type",
+            "recipient": "Recipient"
+        },
+        "form": {
+            "eventNamePlaceholder": "order.placed",
+            "selectTemplate": "Select template",
+            "selectChannel": "Select channel",
+            "selectRecipientType": "Select recipient type",
+            "recipientPlaceholder": "user@example.com or customer.email",
+            "recipientHint": "For static type, enter an email address. For entity_key type, enter the path to the recipient field (e.g., customer.email)."
+        },
+        "recipientTypes": {
+            "static": "Static Email",
+            "entityKey": "Entity Key"
+        },
+        "create": {
+            "title": "Create Event Notifier",
+            "subtitle": "Configure a new event notifier to send notifications when specific events occur."
+        },
+        "edit": {
+            "title": "Edit Event Notifier"
+        },
+        "detail": {
+            "subtitle": "View and manage event notifier details"
+        },
+        "emptyState": {
+            "heading": "No event notifiers",
+            "description": "Create an event notifier to start sending notifications when events occur."
+        },
+        "toast": {
+            "created": "Event notifier created",
+            "updated": "Event notifier updated",
+            "deleted": "Event notifier deleted",
+            "createError": "Failed to create event notifier",
+            "updateError": "Failed to update event notifier",
+            "deleteError": "Failed to delete event notifier",
+            "allFieldsRequired": "All fields are required"
+        }
     }
 }

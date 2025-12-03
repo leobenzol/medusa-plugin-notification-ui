@@ -1,8 +1,13 @@
 export const defaultAdminEventNotifierFields = [
     "id",
     "event_name",
-    "template_id",
     "channel",
+    "recipient_type",
+    "recipient",
+
+    "template_id",
+    "template.*",
+
     "created_at",
     "updated_at",
     "deleted_at",

@@ -5,7 +5,8 @@
     "type": "object",
     "required": [
         "fields",
-        "notificationTemplates"
+        "notificationTemplates",
+        "eventNotifiers"
     ],
     "properties": {
         "$schema": {
@@ -309,6 +310,280 @@
                         "delete": {
                             "type": "string",
                             "description": "Success message after deleting a template"
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "eventNotifiers": {
+            "type": "object",
+            "description": "Translations related to event notifiers",
+            "required": [
+                "title",
+                "deleteWarning",
+                "table",
+                "fields",
+                "form",
+                "recipientTypes",
+                "create",
+                "edit",
+                "detail",
+                "emptyState",
+                "toast"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Main page title for event notifiers"
+                },
+                "deleteWarning": {
+                    "type": "string",
+                    "description": "Warning message when deleting an event notifier"
+                },
+                "table": {
+                    "type": "object",
+                    "description": "Table related translations",
+                    "required": [
+                        "eventName",
+                        "template",
+                        "channel",
+                        "recipientType",
+                        "recipient",
+                        "actions",
+                        "loading"
+                    ],
+                    "properties": {
+                        "eventName": {
+                            "type": "string",
+                            "description": "Table header for event name column"
+                        },
+                        "template": {
+                            "type": "string",
+                            "description": "Table header for template column"
+                        },
+                        "channel": {
+                            "type": "string",
+                            "description": "Table header for channel column"
+                        },
+                        "recipientType": {
+                            "type": "string",
+                            "description": "Table header for recipient type column"
+                        },
+                        "recipient": {
+                            "type": "string",
+                            "description": "Table header for recipient column"
+                        },
+                        "actions": {
+                            "type": "string",
+                            "description": "Table header for actions column"
+                        },
+                        "loading": {
+                            "type": "string",
+                            "description": "Loading state message"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "fields": {
+                    "type": "object",
+                    "description": "Field labels",
+                    "required": [
+                        "eventName",
+                        "template",
+                        "channel",
+                        "recipientType",
+                        "recipient"
+                    ],
+                    "properties": {
+                        "eventName": {
+                            "type": "string",
+                            "description": "Label for event name field"
+                        },
+                        "template": {
+                            "type": "string",
+                            "description": "Label for template field"
+                        },
+                        "channel": {
+                            "type": "string",
+                            "description": "Label for channel field"
+                        },
+                        "recipientType": {
+                            "type": "string",
+                            "description": "Label for recipient type field"
+                        },
+                        "recipient": {
+                            "type": "string",
+                            "description": "Label for recipient field"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "form": {
+                    "type": "object",
+                    "description": "Form related translations",
+                    "required": [
+                        "eventNamePlaceholder",
+                        "selectTemplate",
+                        "selectChannel",
+                        "selectRecipientType",
+                        "recipientPlaceholder",
+                        "recipientHint"
+                    ],
+                    "properties": {
+                        "eventNamePlaceholder": {
+                            "type": "string",
+                            "description": "Placeholder for event name input field"
+                        },
+                        "selectTemplate": {
+                            "type": "string",
+                            "description": "Placeholder for template selection"
+                        },
+                        "selectChannel": {
+                            "type": "string",
+                            "description": "Placeholder for channel selection"
+                        },
+                        "selectRecipientType": {
+                            "type": "string",
+                            "description": "Placeholder for recipient type selection"
+                        },
+                        "recipientPlaceholder": {
+                            "type": "string",
+                            "description": "Placeholder for recipient input field"
+                        },
+                        "recipientHint": {
+                            "type": "string",
+                            "description": "Hint text for recipient input field"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "recipientTypes": {
+                    "type": "object",
+                    "description": "Recipient type labels",
+                    "required": [
+                        "static",
+                        "entityKey"
+                    ],
+                    "properties": {
+                        "static": {
+                            "type": "string",
+                            "description": "Label for static recipient type"
+                        },
+                        "entityKey": {
+                            "type": "string",
+                            "description": "Label for entity key recipient type"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "create": {
+                    "type": "object",
+                    "description": "Create flow related translations",
+                    "required": [
+                        "title",
+                        "subtitle"
+                    ],
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "Title for create event notifier form"
+                        },
+                        "subtitle": {
+                            "type": "string",
+                            "description": "Subtitle for create event notifier form"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "edit": {
+                    "type": "object",
+                    "description": "Edit flow related translations",
+                    "required": [
+                        "title"
+                    ],
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "Title for edit event notifier form"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "detail": {
+                    "type": "object",
+                    "description": "Detail page related translations",
+                    "required": [
+                        "subtitle"
+                    ],
+                    "properties": {
+                        "subtitle": {
+                            "type": "string",
+                            "description": "Subtitle for event notifier detail page"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "emptyState": {
+                    "type": "object",
+                    "description": "Empty state when no event notifiers exist",
+                    "required": [
+                        "heading",
+                        "description"
+                    ],
+                    "properties": {
+                        "heading": {
+                            "type": "string",
+                            "description": "Heading text for empty state"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "Description text for empty state"
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "toast": {
+                    "type": "object",
+                    "description": "Toast notification messages",
+                    "required": [
+                        "created",
+                        "updated",
+                        "deleted",
+                        "createError",
+                        "updateError",
+                        "deleteError",
+                        "allFieldsRequired"
+                    ],
+                    "properties": {
+                        "created": {
+                            "type": "string",
+                            "description": "Success message after creating an event notifier"
+                        },
+                        "updated": {
+                            "type": "string",
+                            "description": "Success message after updating an event notifier"
+                        },
+                        "deleted": {
+                            "type": "string",
+                            "description": "Success message after deleting an event notifier"
+                        },
+                        "createError": {
+                            "type": "string",
+                            "description": "Error message when creating fails"
+                        },
+                        "updateError": {
+                            "type": "string",
+                            "description": "Error message when updating fails"
+                        },
+                        "deleteError": {
+                            "type": "string",
+                            "description": "Error message when deleting fails"
+                        },
+                        "allFieldsRequired": {
+                            "type": "string",
+                            "description": "Validation error message when required fields are missing"
                         }
                     },
                     "additionalProperties": false

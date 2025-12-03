@@ -22,6 +22,7 @@ export default async function eventSubscriberLoader({
 
     if (!notifiers || count === 0) {
         logger.info("[EVENT-NOTIFIER] No event notifiers found to subscribe to")
+        container.register("notifiers", asValue([]))
         return
     }
     container.register("notifiers", asValue(notifiers))

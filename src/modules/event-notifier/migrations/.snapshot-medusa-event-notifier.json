@@ -42,6 +42,28 @@
           "nullable": false,
           "mappedType": "text"
         },
+        "recipient_type": {
+          "name": "recipient_type",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "enumItems": [
+            "static",
+            "entity_key"
+          ],
+          "mappedType": "enum"
+        },
+        "recipient": {
+          "name": "recipient",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamptz",
@@ -75,29 +97,29 @@
           "mappedType": "datetime"
         }
       },
-      "name": "event-notifier",
+      "name": "event_notifier",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "IDX_event-notifier_event_name_unique",
+          "keyName": "IDX_event_notifier_event_name_unique",
           "columnNames": [],
           "composite": false,
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_event-notifier_event_name_unique\" ON \"event-notifier\" (\"event_name\") WHERE deleted_at IS NULL"
+          "expression": "CREATE UNIQUE INDEX IF NOT EXISTS \"IDX_event_notifier_event_name_unique\" ON \"event_notifier\" (\"event_name\") WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "IDX_event-notifier_deleted_at",
+          "keyName": "IDX_event_notifier_deleted_at",
           "columnNames": [],
           "composite": false,
           "constraint": false,
           "primary": false,
           "unique": false,
-          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_event-notifier_deleted_at\" ON \"event-notifier\" (\"deleted_at\") WHERE deleted_at IS NULL"
+          "expression": "CREATE INDEX IF NOT EXISTS \"IDX_event_notifier_deleted_at\" ON \"event_notifier\" (\"deleted_at\") WHERE deleted_at IS NULL"
         },
         {
-          "keyName": "event-notifier_pkey",
+          "keyName": "event_notifier_pkey",
           "columnNames": [
             "id"
           ],

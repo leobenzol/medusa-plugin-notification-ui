@@ -1,4 +1,6 @@
 import type { SubscriberConfig, SubscriberArgs } from "@medusajs/medusa"
+import { renderTemplate } from "../utils"
+import { AdminNotificationTemplate } from "../types"
 
 type EventData = { notifier_id: string, event_data: { id: string } }
 
@@ -13,7 +15,7 @@ export default async function eventNotifierEmittedHandler({
     const notifier = await query.graph({
         entity: "event_notifier",
         filters: { id: notifier_id },
-        fields: ["*", "template.*"],
+        fields: ["*", "template.*", "template.layout.*"],
     }).then(({ data }) => data[0])
 
     if (!notifier || !notifier.template) {
@@ -30,12 +32,21 @@ export default async function eventNotifierEmittedHandler({
         fields: ["*"],
     }).then(({ data }) => data[0])
 
+    // TODO: handle locale
+    const renderedTemplate = await renderTemplate(
+        notifier.template.template_code as AdminNotificationTemplate["template_code"],
+        notifier.template.layout?.template_code as AdminNotificationTemplate["template_code"],
+        true,
+        "en"
+    )
+
+    // TODO: handle subject with i18n
     await notificationModule.createNotifications({
         channel: notifier.channel,
         content: {
             //subject: template.name,
-            html: notifier.template.template_code.jsx as string,
-            //text: template.template_code,
+            html: renderedTemplate.html,
+            text: renderedTemplate.text,
         },
         to: notifier.recipient_type === "static"
             ? notifier.recipient

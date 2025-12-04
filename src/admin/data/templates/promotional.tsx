@@ -1,9 +1,4 @@
-export const PROMOTIONAL_TEMPLATE = `
-const React = require("react")
-const {Html, Head, Preview, Body, Container, Section, Heading, Text, Button, Hr, Img} = require("@react-email/components")
-
-const PromotionalEmail = ({title, subtitle, offerText, discountCode, ctaText, ctaUrl, imageUrl}) => 
-<Html>
+export const PROMOTIONAL_TEMPLATE_JSX = `<Html>
   <Head />
   <Preview>{title || "Special Offer Just for You!"}</Preview>
   <Body style={main}>
@@ -50,8 +45,9 @@ const PromotionalEmail = ({title, subtitle, offerText, discountCode, ctaText, ct
       </Text>
     </Container>
   </Body>
-</Html>
+</Html>`
 
+export const PROMOTIONAL_TEMPLATE_ADDITIONAL = `
 const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
@@ -169,9 +165,9 @@ const footer = {
   padding: '0 24px',
   marginTop: '24px',
   textAlign: 'center',
-}
+}`
 
-PromotionalEmail.PreviewProps = {
+export const PROMOTIONAL_TEMPLATE_PREVIEW_PROPS = `
   title: "🎉 Holiday Sale - 50% OFF!",
   subtitle: "Limited Time Offer",
   offerText: "Get 50% OFF on all products",
@@ -179,7 +175,13 @@ PromotionalEmail.PreviewProps = {
   ctaText: "Shop Now",
   ctaUrl: "https://example.com/sale",
   imageUrl: "https://via.placeholder.com/600x300/5469d4/ffffff?text=Holiday+Sale",
-}
-
-module.exports = PromotionalEmail
 `
+
+export const PROMOTIONAL_TEMPLATE_I18N = ``
+
+export const PROMOTIONAL_TEMPLATE = {
+  jsx: PROMOTIONAL_TEMPLATE_JSX,
+  additional: PROMOTIONAL_TEMPLATE_ADDITIONAL,
+  preview_props: PROMOTIONAL_TEMPLATE_PREVIEW_PROPS,
+  i18n: PROMOTIONAL_TEMPLATE_I18N,
+}

@@ -49,8 +49,12 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
             control={form.control}
             name="is_layout"
             onCheckedChange={checked => {
-              if (checked)
+              if (checked) {
                 form.setValue("layout_id", undefined)
+                form.setValue("template_code", DEFAULT_LAYOUTS["blank"])
+              } else {
+                form.setValue("template_code", DEFAULT_TEMPLATES["blank"])
+              }
             }}
             label={t("notificationTemplates.create.isLayoutTemplate")}
             description={t("notificationTemplates.create.isLayoutTemplateDescription")}
@@ -84,20 +88,25 @@ export const CreateTemplateForm = ({ form }: { form: FormReturn }) => {
             name="template_code"
             render={({ field }) => {
               const templates = isLayout ? DEFAULT_LAYOUTS : DEFAULT_TEMPLATES
+              // Find the selected template key from the current value
+              const selectedKey = Object.entries(templates).find(
+                ([, templateValue]) => JSON.stringify(templateValue) === JSON.stringify(field.value)
+              )?.[0] || "blank"
+
               return (
                 <Form.Item>
                   <Form.Label>{t("fields.template_code")}</Form.Label>
                   <Form.Control>
                     <RadioGroup
                       className="grid-cols-2"
-                      {...field}
-                      onValueChange={field.onChange}
+                      value={selectedKey}
+                      onValueChange={(key) => field.onChange(templates[key as keyof typeof templates])}
                     >
                       {
-                        Object.entries(templates).map(([key, template]) => (
+                        Object.keys(templates).map((key) => (
                           <RadioGroup.ChoiceBox
                             key={key}
-                            value={template.template_code}
+                            value={key}
                             label={t(`notificationTemplates.${isLayout ? 'defaultLayouts' : 'defaultTemplates'}.${key as keyof typeof templates}.title`)}
                             description={t(`notificationTemplates.${isLayout ? 'defaultLayouts' : 'defaultTemplates'}.${key as keyof typeof templates}.description`)}
                             className="overflow-hidden"

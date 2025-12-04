@@ -1,9 +1,4 @@
-export const BRANDED_LAYOUT = `
-const React = require("react")
-const {Html, Head, Preview, Body, Container, Section, Hr, Text, Img, Link, Row, Column} = require("@react-email/components")
-
-const BrandedLayout = ({children, previewText, logoUrl, companyName, brandColor, headerText, footerLinks, socialLinks, addressText}) => 
-<Html>
+export const BRANDED_LAYOUT_JSX = `<Html>
   <Head />
   <Preview>{previewText || "Email Preview"}</Preview>
   <Body style={main}>
@@ -60,9 +55,9 @@ const BrandedLayout = ({children, previewText, logoUrl, companyName, brandColor,
       </Text>
     </Container>
   </Body>
-</Html>
+</Html>`
 
-const main = {
+export const BRANDED_LAYOUT_ADDITIONAL = `const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 }
@@ -137,9 +132,9 @@ const copyright = {
   color: '#8898aa',
   fontSize: '11px',
   textAlign: 'center',
-}
+}`
 
-BrandedLayout.PreviewProps = {
+export const BRANDED_LAYOUT_PREVIEW_PROPS = `
   previewText: "Branded Layout Preview",
   logoUrl: "https://via.placeholder.com/150x50",
   companyName: "Your Company",
@@ -157,7 +152,14 @@ BrandedLayout.PreviewProps = {
   ],
   addressText: "123 Main Street, San Francisco, CA 94102",
   children: null,
+`
+
+export const BRANDED_LAYOUT_I18N = ``
+
+export const BRANDED_LAYOUT = {
+  jsx: BRANDED_LAYOUT_JSX,
+  additional: BRANDED_LAYOUT_ADDITIONAL,
+  preview_props: BRANDED_LAYOUT_PREVIEW_PROPS,
+  i18n: BRANDED_LAYOUT_I18N,
 }
 
-module.exports = BrandedLayout
-`

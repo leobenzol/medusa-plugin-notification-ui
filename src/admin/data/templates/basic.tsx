@@ -1,9 +1,4 @@
-export const BASIC_TEMPLATE = `
-const React = require("react")
-const {Html, Head, Preview, Body, Container, Heading, Text, Button, Hr} = require("@react-email/components")
-
-const BasicEmail = ({title, message, buttonText, buttonUrl}) => 
-<Html>
+export const BASIC_TEMPLATE_JSX = `<Html>
   <Head />
   <Preview>{title}</Preview>
   <Body style={main}>
@@ -23,9 +18,9 @@ const BasicEmail = ({title, message, buttonText, buttonUrl}) =>
       </Text>
     </Container>
   </Body>
-</Html>
+</Html>`
 
-const main = {
+export const BASIC_TEMPLATE_ADDITIONAL = `const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 }
@@ -77,14 +72,20 @@ const footer = {
   fontSize: '12px',
   lineHeight: '16px',
   padding: '0 24px',
-}
+}`
 
-BasicEmail.PreviewProps = {
+export const BASIC_TEMPLATE_PREVIEW_PROPS = `
   title: "Welcome",
   message: "Thank you for signing up. We're excited to have you on board!",
   buttonText: "Get Started",
   buttonUrl: "https://example.com",
-}
-
-module.exports = BasicEmail
 `
+
+export const BASIC_TEMPLATE_I18N = ``
+
+export const BASIC_TEMPLATE = {
+  jsx: BASIC_TEMPLATE_JSX,
+  additional: BASIC_TEMPLATE_ADDITIONAL,
+  preview_props: BASIC_TEMPLATE_PREVIEW_PROPS,
+  i18n: BASIC_TEMPLATE_I18N,
+}

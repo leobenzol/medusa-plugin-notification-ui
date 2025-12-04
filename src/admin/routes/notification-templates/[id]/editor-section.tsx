@@ -2,12 +2,13 @@ import { Container, Button, toast } from "@medusajs/ui"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useUpdateNotificationTemplate } from "../../../hooks/use-notification-templates"
 import { useTranslation } from "react-i18next"
-import { CodeEditor } from "../../../components/code-editor"
+import { MultiTabCodeEditor } from "../../../components/multi-tab-code-editor"
+import { AdminNotificationTemplate } from "../../../../types/http/notification-template"
 
 type EditorSectionProps = {
     templateId: string
-    templateCode: string
-    onCodeChange: (code: string) => void
+    templateCode: AdminNotificationTemplate["template_code"]
+    onCodeChange: (code: AdminNotificationTemplate["template_code"]) => void
 }
 
 export const EditorSection = ({
@@ -27,20 +28,72 @@ export const EditorSection = ({
         setHasChanges(false)
     }, [templateCode])
 
-    // Debounced code change handler
-    const handleCodeChange = useCallback((newCode: string) => {
-        setHasChanges(newCode !== templateCode)
-        // Clear existing timer
+    // Check for changes
+    const checkForChanges = useCallback((code: typeof editedCode) => {
+        const hasChange =
+            code.jsx !== templateCode.jsx ||
+            code.additional !== templateCode.additional ||
+            code.preview_props !== templateCode.preview_props ||
+            code.i18n !== templateCode.i18n
+        setHasChanges(hasChange)
+    }, [templateCode])
+
+    // Debounced code change handlers
+    const handleJsxChange = useCallback((newCode: string) => {
+        const updated = { ...editedCode, jsx: newCode }
+        setEditedCode(updated)
+        checkForChanges(updated)
+
         if (debounceTimerRef.current) {
             clearTimeout(debounceTimerRef.current)
         }
 
-        // Set new timer for debounced update
         debounceTimerRef.current = setTimeout(() => {
-            setEditedCode(newCode)
-            onCodeChange(newCode)
-        }, 1000) // 1 second debounce
-    }, [templateCode, onCodeChange])
+            onCodeChange(updated)
+        }, 1000)
+    }, [editedCode, checkForChanges, onCodeChange])
+
+    const handleAdditionalChange = useCallback((newCode: string) => {
+        const updated = { ...editedCode, additional: newCode }
+        setEditedCode(updated)
+        checkForChanges(updated)
+
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current)
+        }
+
+        debounceTimerRef.current = setTimeout(() => {
+            onCodeChange(updated)
+        }, 1000)
+    }, [editedCode, checkForChanges, onCodeChange])
+
+    const handlePreviewPropsChange = useCallback((newCode: string) => {
+        const updated = { ...editedCode, preview_props: newCode }
+        setEditedCode(updated)
+        checkForChanges(updated)
+
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current)
+        }
+
+        debounceTimerRef.current = setTimeout(() => {
+            onCodeChange(updated)
+        }, 1000)
+    }, [editedCode, checkForChanges, onCodeChange])
+
+    const handleI18nChange = useCallback((newCode: string) => {
+        const updated = { ...editedCode, i18n: newCode }
+        setEditedCode(updated)
+        checkForChanges(updated)
+
+        if (debounceTimerRef.current) {
+            clearTimeout(debounceTimerRef.current)
+        }
+
+        debounceTimerRef.current = setTimeout(() => {
+            onCodeChange(updated)
+        }, 1000)
+    }, [editedCode, checkForChanges, onCodeChange])
 
     // Cleanup debounce timer
     useEffect(() => {
@@ -54,7 +107,7 @@ export const EditorSection = ({
     const handleSave = async () => {
         try {
             await updateTemplate({
-                template_code: editedCode,
+                template_code: editedCode
             })
             toast.success(t("notificationTemplates.toast.update"))
             setHasChanges(false)
@@ -79,12 +132,13 @@ export const EditorSection = ({
             </div>
 
             <div className="relative bg-ui-bg-subtle h-[calc(100vh-200px)]">
-                <div className="h-full">
-                    <CodeEditor
-                        code={editedCode}
-                        onChange={handleCodeChange}
-                    />
-                </div>
+                <MultiTabCodeEditor
+                    templateCode={editedCode}
+                    onJsxChange={handleJsxChange}
+                    onAdditionalChange={handleAdditionalChange}
+                    onPreviewPropsChange={handlePreviewPropsChange}
+                    onI18nKeysChange={handleI18nChange}
+                />
             </div>
         </Container>
     )

@@ -1,9 +1,4 @@
-export const BASIC_LAYOUT = `
-const React = require("react")
-const {Html, Head, Preview, Body, Container, Hr, Text, Img} = require("@react-email/components")
-
-const BasicLayout = ({children, previewText, logoUrl, companyName, footerText}) => 
-<Html>
+export const BASIC_LAYOUT_JSX = `<Html>
   <Head />
   <Preview>{previewText || "Email Preview"}</Preview>
   <Body style={main}>
@@ -24,9 +19,9 @@ const BasicLayout = ({children, previewText, logoUrl, companyName, footerText}) 
       </Text>
     </Container>
   </Body>
-</Html>
+</Html>`
 
-const main = {
+export const BASIC_LAYOUT_ADDITIONAL = `const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 }
@@ -65,15 +60,21 @@ const footerText = {
   lineHeight: '16px',
   textAlign: 'center',
   padding: '0 24px 24px',
-}
+}`
 
-BasicLayout.PreviewProps = {
+export const BASIC_LAYOUT_PREVIEW_PROPS = `
   previewText: "Basic Layout Preview",
   logoUrl: "https://via.placeholder.com/150x50",
   companyName: "Your Company",
   footerText: "© 2025 Your Company. All rights reserved.",
   children: null,
-}
-
-module.exports = BasicLayout
 `
+
+export const BASIC_LAYOUT_I18N = ``
+
+export const BASIC_LAYOUT = {
+  jsx: BASIC_LAYOUT_JSX,
+  additional: BASIC_LAYOUT_ADDITIONAL,
+  preview_props: BASIC_LAYOUT_PREVIEW_PROPS,
+  i18n: BASIC_LAYOUT_I18N,
+}

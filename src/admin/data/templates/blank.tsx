@@ -1,16 +1,19 @@
-export const BLANK_TEMPLATE = `
-const React = require("react")
-const {Html, Head, Preview, Body} = require("@react-email/components")
-
-const BlankEmail = () => 
-<Html>
+export const BLANK_TEMPLATE_JSX = `<Html>
   <Head />
   <Preview>Blank Template</Preview>
   <Body>
   </Body>
-</Html>
+</Html>`
 
-BlankEmail.PreviewProps = {}
+export const BLANK_TEMPLATE_ADDITIONAL = ``
 
-module.exports = BlankEmail
-`
+export const BLANK_TEMPLATE_PREVIEW_PROPS = ``
+
+export const BLANK_TEMPLATE_I18N = ``
+
+export const BLANK_TEMPLATE = {
+  jsx: BLANK_TEMPLATE_JSX,
+  additional: BLANK_TEMPLATE_ADDITIONAL,
+  preview_props: BLANK_TEMPLATE_PREVIEW_PROPS,
+  i18n: BLANK_TEMPLATE_I18N,
+}

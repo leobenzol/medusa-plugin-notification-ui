@@ -43,7 +43,15 @@
             "tabs": {
                 "preview": "Preview",
                 "html": "HTML",
-                "text": "Text"
+                "text": "Text",
+                "jsx": "JSX",
+                "jsx_description": "Email template markup",
+                "additional": "Additional Code",
+                "additional_description": "Pre-render calculations",
+                "preview_props": "Preview Props",
+                "preview_props_description": "Test data for preview",
+                "i18n": "i18n Keys",
+                "i18n_description": "Translation keys"
             },
             "loading_preview": "Loading preview...",
             "updating_preview": "Updating preview...",

@@ -50,6 +50,7 @@
                 "no_layout",
                 "template_editor",
                 "defaultTemplates",
+                "defaultLayouts",
                 "toast"
             ],
             "properties": {
@@ -242,6 +243,38 @@
                                 "text": {
                                     "type": "string",
                                     "description": "Text tab label"
+                                },
+                                "jsx": {
+                                    "type": "string",
+                                    "description": "JSX tab label"
+                                },
+                                "jsx_description": {
+                                    "type": "string",
+                                    "description": "JSX tab description"
+                                },
+                                "additional": {
+                                    "type": "string",
+                                    "description": "Additional code tab label"
+                                },
+                                "additional_description": {
+                                    "type": "string",
+                                    "description": "Additional code tab description"
+                                },
+                                "preview_props": {
+                                    "type": "string",
+                                    "description": "Preview props tab label"
+                                },
+                                "preview_props_description": {
+                                    "type": "string",
+                                    "description": "Preview props tab description"
+                                },
+                                "i18n": {
+                                    "type": "string",
+                                    "description": "i18n keys tab label"
+                                },
+                                "i18n_description": {
+                                    "type": "string",
+                                    "description": "i18n keys tab description"
                                 }
                             },
                             "additionalProperties": false

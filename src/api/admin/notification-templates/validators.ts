@@ -36,7 +36,12 @@ export const AdminCreateNotificationTemplate = z.object({
     description: z.string().nullish(),
     type: z.enum(["template", "layout"]),
     layout_id: z.string().nullish(),
-    template_code: z.string().min(1, "Template code is required"),
+    template_code: z.object({
+        jsx: z.string().optional(),
+        additional: z.string().optional(),
+        preview_props: z.string().optional(),
+        i18n: z.string().optional(),
+    })
 })
 
 export const AdminUpdateNotificationTemplate = z.object({
@@ -49,5 +54,10 @@ export const AdminUpdateNotificationTemplate = z.object({
     description: z.string().nullish(),
     type: z.enum(["template", "layout"]).optional(),
     layout_id: z.string().nullish(),
-    template_code: z.string().min(1).optional(),
+    template_code: z.object({
+        jsx: z.string().optional(),
+        additional: z.string().optional(),
+        preview_props: z.string().optional(),
+        i18n: z.string().optional(),
+    }).optional(),
 })

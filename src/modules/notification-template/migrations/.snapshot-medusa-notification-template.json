@@ -66,12 +66,12 @@
         },
         "template_code": {
           "name": "template_code",
-          "type": "text",
+          "type": "jsonb",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "json"
         },
         "created_at": {
           "name": "created_at",

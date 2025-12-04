@@ -1,8 +1,4 @@
-export const TRANSACTIONAL_TEMPLATE = `
-const React = require("react")
-const {Html, Head, Preview, Body, Container, Section, Heading, Text, Button, Hr, Row, Column} = require("@react-email/components")
-
-const TransactionalEmail = ({orderNumber, orderDate, items, total, trackingUrl}) => 
+export const TRANSACTIONAL_TEMPLATE_JSX = ` 
 <Html>
   <Head />
   <Preview>Order Confirmation #{orderNumber}</Preview>
@@ -69,9 +65,9 @@ const TransactionalEmail = ({orderNumber, orderDate, items, total, trackingUrl})
       </Text>
     </Container>
   </Body>
-</Html>
+</Html>`
 
-const main = {
+export const TRANSACTIONAL_TEMPLATE_ADDITIONAL = `const main = {
   backgroundColor: '#f6f9fc',
   fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
 }
@@ -195,9 +191,9 @@ const footer = {
   lineHeight: '16px',
   padding: '0 24px',
   marginTop: '24px',
-}
+}`
 
-TransactionalEmail.PreviewProps = {
+export const TRANSACTIONAL_TEMPLATE_PREVIEW_PROPS = `
   orderNumber: "ORD-789012",
   orderDate: "December 3, 2025",
   items: [
@@ -206,7 +202,14 @@ TransactionalEmail.PreviewProps = {
   ],
   total: "129.97",
   trackingUrl: "https://example.com/track/789012",
+`
+
+export const TRANSACTIONAL_TEMPLATE_I18N = ``
+
+export const TRANSACTIONAL_TEMPLATE = {
+  jsx: TRANSACTIONAL_TEMPLATE_JSX,
+  additional: TRANSACTIONAL_TEMPLATE_ADDITIONAL,
+  preview_props: TRANSACTIONAL_TEMPLATE_PREVIEW_PROPS,
+  i18n: TRANSACTIONAL_TEMPLATE_I18N,
 }
 
-module.exports = TransactionalEmail
-`

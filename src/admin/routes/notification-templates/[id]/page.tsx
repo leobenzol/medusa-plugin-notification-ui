@@ -27,7 +27,7 @@ const NotificationTemplateDetail = () => {
 }
 
 const EditSection = ({ template }: { template: AdminNotificationTemplate }) => {
-  const [editorCode, setEditorCode] = useState<string>(template.template_code)
+  const [editorCode, setEditorCode] = useState(template.template_code)
 
   return (
     <div className="flex w-full flex-col items-start gap-x-4 gap-y-3 xl:grid xl:grid-cols-2">
@@ -40,8 +40,8 @@ const EditSection = ({ template }: { template: AdminNotificationTemplate }) => {
       </div>
       <div className="flex w-full flex-col gap-y-3 xl:mt-0">
         <PreviewSection
-          code={editorCode}
-          layoutCode={template.layout?.template_code || ""}
+          templateCode={editorCode}
+          layoutCode={template.layout?.template_code}
           hasLayout={!!template.layout}
         />
       </div>

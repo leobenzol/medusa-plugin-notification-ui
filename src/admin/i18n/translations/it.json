@@ -43,7 +43,15 @@
             "tabs": {
                 "preview": "Anteprima",
                 "html": "HTML",
-                "text": "Testo"
+                "text": "Testo",
+                "jsx": "JSX",
+                "jsx_description": "Markup template email",
+                "additional": "Codice Aggiuntivo",
+                "additional_description": "Calcoli pre-rendering",
+                "preview_props": "Props Anteprima",
+                "preview_props_description": "Dati di test per l'anteprima",
+                "i18n": "Chiavi i18n",
+                "i18n_description": "Chiavi di traduzione"
             },
             "loading_preview": "Caricamento anteprima...",
             "updating_preview": "Aggiornamento anteprima...",

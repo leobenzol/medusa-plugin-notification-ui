@@ -10,7 +10,7 @@ const NotificationTemplate = model.define("notification_template", {
   type: model.enum(["template", "layout"]),
   layout: model.belongsTo(() => NotificationTemplate).nullable(),
 
-  template_code: model.text(),
+  template_code: model.json(),
 })
 
 export default NotificationTemplate

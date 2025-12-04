@@ -29,7 +29,12 @@ const CreateNotificationTemplateSchema = zod.object({
   description: zod.string().optional(),
   is_layout: zod.boolean().default(false),
   layout_id: zod.string().optional(),
-  template_code: zod.string().nonempty(),
+  template_code: zod.object({
+    jsx: zod.string(),
+    additional: zod.string(),
+    preview_props: zod.string(),
+    i18n: zod.string(),
+  }),
 })
 
 export type FormReturn = UseFormReturn<zod.infer<typeof CreateNotificationTemplateSchema>>
@@ -46,7 +51,7 @@ export const CreateNotificationTemplateForm = () => {
   const direction = useDocumentDirection()
   const form = useForm<zod.infer<typeof CreateNotificationTemplateSchema>>({
     defaultValues: {
-      template_code: DEFAULT_TEMPLATES["blank"].template_code,
+      template_code: DEFAULT_TEMPLATES["blank"],
     },
     resolver: zodResolver(CreateNotificationTemplateSchema),
   })

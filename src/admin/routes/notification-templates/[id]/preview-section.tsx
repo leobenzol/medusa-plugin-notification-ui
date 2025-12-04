@@ -7,21 +7,62 @@ import { IconButton, Select } from "@medusajs/ui"
 import { Moon, Sun, SquaresPlus } from "@medusajs/icons"
 import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
+import { AdminNotificationTemplate } from "../../../../types/http/notification-template"
 
 type PreviewSectionProps = {
-    code: string,
-    layoutCode: string,
+    templateCode: AdminNotificationTemplate["template_code"]
+    layoutCode?: AdminNotificationTemplate["template_code"]
     hasLayout: boolean
 }
 
 type ViewMode = "preview" | "html" | "text"
 
 const renderTemplate = async (
-    code: string,
-    layoutCode: string | null,
+    templateCode: AdminNotificationTemplate["template_code"],
+    layoutCode: AdminNotificationTemplate["template_code"] | null,
     shouldRenderWithLayout: boolean,
     selectedLocale: string
 ) => {
+    // Helper function to extract React Email component names from JSX
+    const extractReactEmailComponents = (jsx: string): string => {
+        const componentPattern = /<([A-Z][a-zA-Z]*)/g
+        const matches = jsx.matchAll(componentPattern)
+        const components = new Set<string>()
+
+        for (const match of matches) {
+            components.add(match[1])
+        }
+
+        return Array.from(components).join(", ") || "Html, Head, Body"
+    }
+
+    // Reconstruct the full template code from the 4 sections
+    const reconstructTemplate = ({ jsx, additional, preview_props, i18n }: AdminNotificationTemplate["template_code"]) => {
+        return `
+const React = require("react")
+const { ${extractReactEmailComponents(jsx)} } = require("@react-email/components")
+const i18next = require("i18next")
+
+const Template = ({ ...props }) => {
+${additional ? additional : "  // Additional code goes here"}
+
+  return (
+${jsx}
+  )
+}
+
+Template.PreviewProps = {
+${preview_props || ""}
+}
+
+${i18n || "// i18n keys: {}"}
+
+module.exports = Template
+`
+    }
+
+    const fullTemplateCode = reconstructTemplate(templateCode)
+
     // Dynamically import dependencies
     const [{ transform }, React, ReactEmailComponents, i18next] = await Promise.all([
         import("sucrase"),
@@ -31,7 +72,7 @@ const renderTemplate = async (
     ])
 
     // Transform TSX/JSX code to JavaScript
-    const transformedCode = transform(code, {
+    const transformedCode = transform(fullTemplateCode, {
         transforms: ["typescript", "jsx"],
         production: true,
     }).code
@@ -77,7 +118,9 @@ const renderTemplate = async (
 
     // If layout should be rendered and layout code exists, wrap the template in the layout
     if (shouldRenderWithLayout && layoutCode) {
-        const transformedLayoutCode = transform(layoutCode, {
+        const fullLayoutCode = reconstructTemplate( layoutCode )
+
+        const transformedLayoutCode = transform(fullLayoutCode, {
             transforms: ["typescript", "jsx"],
             production: true,
         }).code
@@ -117,7 +160,7 @@ const renderTemplate = async (
 
 export const PreviewSection = ({
     hasLayout,
-    code,
+    templateCode,
     layoutCode,
 }: PreviewSectionProps) => {
     const { t } = useTranslation("notification-ui")
@@ -127,11 +170,23 @@ export const PreviewSection = ({
     const [locale, setLocale] = useState("en")
 
     const { data: renderOutput, isPending: isLoading, error } = useQuery({
-        queryKey: ["template-preview", code, ...(renderWithLayout ? [layoutCode] : []), renderWithLayout, locale],
-        queryFn: () => renderTemplate(code, renderWithLayout ? layoutCode : null, renderWithLayout, locale),
+        queryKey: [
+            "template-preview",
+            templateCode,
+            ...(renderWithLayout && layoutCode ? [layoutCode] : []),
+            renderWithLayout,
+            locale
+        ],
+        queryFn: () => renderTemplate(
+            templateCode,
+            renderWithLayout && layoutCode ? layoutCode : null,
+            renderWithLayout,
+            locale
+        ),
         retry: false,
-        enabled: !!code && code.trim().length > 0,
+        enabled: !!templateCode.jsx && templateCode.jsx.trim().length > 0,
     })
+
     return (
         <Container className="divide-y p-0">
             <PreviewTopbar

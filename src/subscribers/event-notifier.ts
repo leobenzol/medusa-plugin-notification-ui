@@ -34,7 +34,7 @@ export default async function eventNotifierEmittedHandler({
         channel: notifier.channel,
         content: {
             //subject: template.name,
-            html: notifier.template.template_code,
+            html: notifier.template.template_code.jsx as string,
             //text: template.template_code,
         },
         to: notifier.recipient_type === "static"

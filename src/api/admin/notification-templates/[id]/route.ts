@@ -1,5 +1,5 @@
 import { AuthenticatedMedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { ContainerRegistrationKeys, MedusaError } from "@medusajs/framework/utils"
 import { NOTIFICATION_TEMPLATE_MODULE } from "../../../../modules/notification-template"
 import {
     AdminNotificationTemplateResponse,
@@ -63,6 +63,14 @@ export const DELETE = async (
     res: MedusaResponse<AdminNotificationTemplateDeleteResponse>
 ) => {
     const notificationTemplateService = req.scope.resolve(NOTIFICATION_TEMPLATE_MODULE)
+    const notifierService = req.scope.resolve("event_notifier")
+
+    const linkedNotifiers = await notifierService.listEventNotifiers({
+        template_id: req.params.id,
+    })
+
+    if (linkedNotifiers.length > 0) 
+        throw new MedusaError(MedusaError.Types.NOT_ALLOWED, "Cannot delete notification template linked to event notifiers")
 
     await notificationTemplateService.deleteNotificationTemplates(req.params.id)
 

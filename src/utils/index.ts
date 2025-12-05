@@ -24,7 +24,7 @@ export const renderTemplate = async (
     const reconstructTemplate = ({ jsx, additional, preview_props, i18n }: AdminNotificationTemplate["template_code"]) => {
         return `
 const React = require("react")
-const { ${extractReactEmailComponents(jsx)} } = require("@react-email/components")
+const { ${extractReactEmailComponents(jsx)}, pixelBasedPreset } = require("@react-email/components")
 const i18next = require("i18next")
 
 const Template = ({ ...props }) => {

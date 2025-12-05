@@ -1,5 +1,5 @@
 import { Container, Tooltip } from "@medusajs/ui"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { CodeView } from "../../../components/code-view"
 import { IconButton, Select } from "@medusajs/ui"
@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next"
 import { AdminNotificationTemplate } from "../../../../types/http/notification-template"
 import { renderTemplate } from "../../../../utils"
+import { applyColorInversion, undoColorInversion } from "../../../utils"
 
 type PreviewSectionProps = {
     templateCode: AdminNotificationTemplate["template_code"]
@@ -26,6 +27,7 @@ export const PreviewSection = ({
     const [isDarkMode, setIsDarkMode] = useState(false)
     const [renderWithLayout, setRenderWithLayout] = useState(hasLayout)
     const [locale, setLocale] = useState("en")
+    const iframeRef = useRef<HTMLIFrameElement>(null)
 
     const { data: renderOutput, isPending: isLoading, error } = useQuery({
         queryKey: [
@@ -45,6 +47,27 @@ export const PreviewSection = ({
         enabled: !!templateCode.jsx && templateCode.jsx.trim().length > 0,
     })
 
+    // Handle dark mode toggle
+    useEffect(() => {
+        const iframe = iframeRef.current
+        if (!iframe) return
+
+        if (isDarkMode) {
+            applyColorInversion(iframe)
+        } else {
+            undoColorInversion(iframe)
+        }
+    }, [isDarkMode, renderOutput])
+
+    const handleIframeLoad = () => {
+        const iframe = iframeRef.current
+        if (!iframe) return
+
+        if (isDarkMode) {
+            applyColorInversion(iframe)
+        }
+    }
+
     return (
         <Container className="divide-y p-0">
             <PreviewTopbar
@@ -59,15 +82,17 @@ export const PreviewSection = ({
                 setLocale={setLocale}
             />
 
-            <div className="relative bg-ui-bg-subtle h-[calc(100vh-200px)] overflow-auto">
+            <div className="relative bg-ui-bg-subtle h-[calc(100vh-200px)] overflow-auto" style={{
+                backgroundColor: activeView === 'preview' && isDarkMode ? 'rgb(115, 115, 115)' : undefined
+            }}>
                 {isLoading && (
-                    <div className="flex items-center justify-center p-12">
+                    <div className="flex items-center justify-center p-4">
                         <div className="text-ui-fg-subtle">{t("notificationTemplates.template_editor.loading_preview")}</div>
                     </div>
                 )}
 
                 {error && !isLoading && (
-                    <div className="flex items-center justify-center p-12">
+                    <div className="flex items-center justify-center p-4">
                         <div className="text-ui-fg-error">
                             <p className="font-medium mb-2">{t("notificationTemplates.template_editor.error_rendering_template")}</p>
                             <p className="text-sm">{error.message}</p>
@@ -78,16 +103,14 @@ export const PreviewSection = ({
                 {!isLoading && !error && renderOutput && (
                     <>
                         {activeView === "preview" && (
-                            <div className="flex items-center justify-center px-8 py-7 h-full">
+                            <div className="flex items-center justify-center p-4 h-full">
                                 <div className="w-full max-w-full bg-white rounded-lg shadow-lg overflow-hidden h-full">
                                     <iframe
+                                        ref={iframeRef}
                                         srcDoc={renderOutput.html}
                                         title="Email Preview"
                                         className="w-full h-full border-0"
-                                        style={{
-                                            colorScheme: isDarkMode ? "dark" : "light",
-                                            filter: isDarkMode ? "invert(1) hue-rotate(180deg)" : "none",
-                                        }}
+                                        onLoad={handleIframeLoad}
                                     />
                                 </div>
                             </div>
@@ -155,6 +178,7 @@ const PreviewTopbar = ({
         { value: "text", label: t("notificationTemplates.template_editor.tabs.text") },
     ]
 
+    // TODO: fetch from backend
     const locales = [
         { value: "en", label: "English" },
         { value: "fr", label: "Français" },
